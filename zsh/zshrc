@@ -1,0 +1,61 @@
+# Path adjustments
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Oh My Zsh installation path
+export ZSH="$HOME/.oh-my-zsh"
+
+# Zsh Theme
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# Plugins
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting vi-mode)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+export EDITOR="nvim"
+
+# Aliases
+alias brewr='arch -x86_64 /usr/local/bin/brew $@'
+alias web='rsync -vrP ~/dev/personal-page/react-personal-site/build/ root@samkingston.xyz:/var/www/samkingston'
+alias vim='/opt/homebrew/bin/nvim'
+alias rm='rm -i'                                                        
+alias cp='cp -i'                                                        
+alias mv='mv -i'
+alias gcb='git checkout -b'
+alias gco='git checkout'
+alias gpoh='git push -u origin HEAD'
+alias gitl="git log --graph --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%an%C(reset)%C(bold yellow)%d%C(reset) %C(dim white)- %s%C(reset)'"
+alias l='ls -lsah | lolcat'
+alias cat='bat'
+alias q='clear'
+
+# Path definitions
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/usr/local/mysql/bin:$PATH"
+export PATH="/opt/homebrew/opt/php@8.0/bin:$PATH"
+export PATH="/opt/homebrew/opt/php@8.0/sbin:$PATH"
+export PATH="/opt/homebrew/sbin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+
+# Enable vi mode
+bindkey -v
+export KEYTIMEOUT=1
+
+# Powerlevel10k prompt customization
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
+
+# nvm configuration
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# fzf configuration
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# chruby configuration
+source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+chruby ruby-3.2.2
+
