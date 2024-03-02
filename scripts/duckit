@@ -1,0 +1,9 @@
+#!/bin/bash
+# Replace spaces with '+' to format the search query for a URL
+query=$(echo "$@" | sed 's/ /+/g')
+# Construct the DuckDuckGo Lite search URL with the query
+url="https://lite.duckduckgo.com/lite/?q=$query"
+# Use Lynx to open the search results
+open -a "Google Chrome" "$url"
+
+
