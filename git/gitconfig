@@ -10,10 +10,14 @@
 	diffFilter = delta --color-only
 
 [delta]
+	line-numbers = true
+	syntax-theme = Dracula
+	plus-style = "syntax #2A363B"
+	plus-emph-style = "syntax #2D4E45"
+	minus-style = "syntax #3B2C37"
+	minus-emph-style = "syntax #613038"
 	navigate = true    # use n and N to move between diff sections
 	light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
-	line-numbers = true
-
 [merge]
 	conflictstyle = zdiff3
 
