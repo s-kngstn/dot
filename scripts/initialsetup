@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Function to display messages
+info() {
+  echo "[INFO] $1"
+}
+
+# Install Xcode Command Line Tools
+info "Installing Xcode Command Line Tools..."
+xcode-select --install
+
+# Wait until the Xcode Command Line Tools are installed
+read -p "Press [Enter] key after Xcode Command Line Tools installation is complete..."
+
+# Accept the Xcode license agreement
+sudo xcodebuild -license accept
+
+# Check if Homebrew is installed, install if not
+if ! command -v brew >/dev/null 2>&1; then
+    info "Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+    info "Homebrew is already installed."
+fi
+
+# Ensure your system is ready to brew
+brew doctor
+
+# Install Git if not already installed
+if ! command -v git >/dev/null 2>&1; then
+    info "Installing Git..."
+    brew install git
+else
+    info "Git is already installed."
+fi
+
+info "Initial setup completed. You can now run the package installation script."
+
