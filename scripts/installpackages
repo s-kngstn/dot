@@ -1,30 +1,9 @@
 #!/bin/bash
 
-# Initialize dry run mode as true
-dry_run=true
-
 # Function to display messages
 info() {
   echo "[INFO] $1"
 }
-
-# Function to execute commands
-execute() {
-    if [ "$dry_run" = true ]; then
-        echo "DRY RUN: $@"
-    else
-        $@
-    fi
-}
-
-# Parse command line arguments
-while [[ "$#" -gt 0 ]]; do
-    case $1 in
-        --run) dry_run=false ;;
-        *) echo "Unknown parameter: $1"; exit 1 ;;
-    esac
-    shift
-done
 
 install_brew_formulas() {  
   local formulas=$*  
@@ -33,8 +12,7 @@ install_brew_formulas() {
       info "Formula $formula is already installed."  
     else  
       info "Installing package < $formula >"  
-      # Use execute function to handle dry run or actual installation
-      execute brew install "$formula"  
+      brew install "$formula"  
     fi  
   done  
 }
@@ -46,8 +24,7 @@ install_brew_casks() {
       info "Cask $cask is already installed."  
     else  
       info "Installing cask < $cask >"  
-      # Use execute function to handle dry run or actual installation
-      execute brew install --cask "$cask"  
+      brew install --cask "$cask"  
     fi  
   done  
 }
