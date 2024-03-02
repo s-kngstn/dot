@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Function to display messages
+info() {
+  echo "[INFO] $1"
+}
+
+install_brew_formulas() {  
+  local formulas=$*  
+  for formula in $formulas; do  
+    if brew list --formula | grep -q "$formula"; then  
+      info "Formula $formula is already installed."  
+    else  
+      info "Installing package < $formula >"  
+      brew install "$formula"  
+    fi  
+  done  
+}
+
+install_brew_casks() {  
+  local casks=$*  
+  for cask in $casks; do  
+    if brew list --casks | grep -q "$cask"; then  
+      info "Cask $cask is already installed."  
+    else  
+      info "Installing cask < $cask >"  
+      brew install --cask "$cask"  
+    fi  
+  done  
+}
+
+# Install casks  
+apps=(kitty font-hack-nerd-font alfred alt-tab)  
+install_brew_casks "${apps[@]}"
+
+# Install formulas  
+packages=(ripgrep rsync pandoc git-delta git zsh yarn xclip tree tree-sitter httpie htop lolcat mysql mas tmux nginx neovim node nmap nvm jq wget curl bat wdiff snappy sqlite)  
+install_brew_formulas "${packages[@]}"
+
