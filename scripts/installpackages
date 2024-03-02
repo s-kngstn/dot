@@ -57,7 +57,7 @@ apps=(kitty font-hack-nerd-font alfred alt-tab)
 install_brew_casks "${apps[@]}"
 
 # Install formulas  
-packages=(ripgrep rsync pandoc git-delta git zsh yarn xclip tree tree-sitter httpie htop lolcat mysql mas tmux nginx neovim node nmap nvm jq wget curl bat wdiff snappy sqlite)  
+packages=(ripgrep rsync pandoc git-delta git gh fzf zsh yarn xclip tree tree-sitter httpie htop lolcat mysql mas tmux nginx neovim node nmap nvm jq wget curl bat wdiff snappy sqlite)  
 install_brew_formulas "${packages[@]}"
 
 # If in dry run mode, inform the user how to run the script for actual changes
