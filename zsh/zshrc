@@ -29,6 +29,24 @@ alias gitl="git log --graph --format=format:'%C(bold blue)%h%C(reset) - %C(bold 
 alias l='ls -lsah | lolcat'
 alias cat='bat'
 alias q='clear'
+alias art='php artisan'
+alias dcup='docker-compose up -d'
+alias dcdown='docker-compose down'
+
+# Warning message to remember to chunk commits appropriately & boot if on master/main
+git() {
+    if [[ $1 == "add" && $2 == "-p" ]]; then
+        local current_branch=$(command git rev-parse --abbrev-ref HEAD)
+
+        if [[ "$current_branch" == "master" || "$current_branch" == "main" ]]; then
+            echo -e "\033[1;31m🚨 You are on the '$current_branch' branch. Direct commits are discouraged. Please switch to a different branch!\033[0m"
+            return 1
+        else
+            echo -e "\033[1;31m🚨 Ensure your commit represents only one logical change. Atomic commits make history clearer!\033[0m"
+        fi
+    fi
+    command git "$@"
+}
 
 # Path definitions
 export PATH="/opt/homebrew/bin:$PATH"
