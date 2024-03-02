@@ -1,38 +1,67 @@
 #!/bin/bash
 
+# Initialize dry run mode as true by default
+dry_run=true
+
 # Function to display messages
 info() {
   echo "[INFO] $1"
 }
 
+# Function to execute commands
+execute() {
+    if [ "$dry_run" = true ]; then
+        echo "DRY RUN: $@"
+    else
+        $@
+    fi
+}
+
+# Parse command line arguments for the --run flag
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        --run) dry_run=false ;;
+        *) echo "Unknown parameter: $1"; exit 1 ;;
+    esac
+    shift
+done
+
 # Install Xcode Command Line Tools
 info "Installing Xcode Command Line Tools..."
-xcode-select --install
+execute xcode-select --install
 
-# Wait until the Xcode Command Line Tools are installed
-read -p "Press [Enter] key after Xcode Command Line Tools installation is complete..."
+# Omit waiting for manual installation step in dry run mode for automation
+if [ "$dry_run" = false ]; then
+    read -p "Press [Enter] key after Xcode Command Line Tools installation is complete..."
+fi
 
 # Accept the Xcode license agreement
-sudo xcodebuild -license accept
+info "Accepting the Xcode license agreement..."
+execute sudo xcodebuild -license accept
 
 # Check if Homebrew is installed, install if not
 if ! command -v brew >/dev/null 2>&1; then
     info "Installing Homebrew..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    execute /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
     info "Homebrew is already installed."
 fi
 
 # Ensure your system is ready to brew
-brew doctor
+info "Checking Homebrew configuration..."
+execute brew doctor
 
 # Install Git if not already installed
 if ! command -v git >/dev/null 2>&1; then
     info "Installing Git..."
-    brew install git
+    execute brew install git
 else
     info "Git is already installed."
 fi
 
 info "Initial setup completed. You can now run the package installation script."
 
+# If in dry run mode, inform the user how to run the script for actual changes
+if [ "$dry_run" = true ]; then
+    echo "DRY RUN COMPLETE: To apply changes, rerun the script with the '--run' flag."
+fi
