@@ -21,12 +21,15 @@ require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
+  -- Kanagawa theme
   -- use('rebelot/kanagawa.nvim')
-  -- One dark theme
-  use('olimorris/onedarkpro.nvim')
-
   -- vim.cmd('colorscheme kanagawa')
-  vim.cmd('colorscheme onedark')
+  -- One dark theme
+  -- use('olimorris/onedarkpro.nvim')
+  -- vim.cmd('colorscheme onedark')
+  -- Tokyo night theme
+  use('folke/tokyonight.nvim')
+  vim.cmd('colorscheme tokyonight')
 
   use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate'})
   use 'nvim-treesitter/nvim-treesitter-context'
