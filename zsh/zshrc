@@ -53,6 +53,10 @@ git() {
         else
             echo -e "\033[1;31m🚨 Ensure your commit represents only one logical change. Atomic commits make history clearer!\033[0m"
         fi
+        # Disallow 'git add .' by checking the command arguments
+    elif [[ $1 == "add" && $2 == "." ]]; then
+        echo -e "\033[1;31m🚨 Nah, you can't do that. Use git patch instead.\033[0m"
+        return 1
     fi
     command git "$@"
 }
