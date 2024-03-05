@@ -36,6 +36,12 @@ alias art='php artisan'
 alias dcup='docker-compose up -d'
 alias dcdown='docker-compose down'
 
+# Functions
+# Create a PR from master to production and assign a reviewer
+function shipit() {
+    gh pr create --base production --head master --title "chore: deployment 🚀" --reviewer $1
+}
+
 # Warning message to remember to chunk commits appropriately & boot if on master/main
 git() {
     if [[ $1 == "add" && $2 == "-p" ]]; then

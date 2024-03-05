@@ -1,9 +1,13 @@
+[user]
+	signingkey = FEDF458EB94523F3
+	name = Sam Kingston
+	email = 58186496+s-kngstn@users.noreply.github.com
 [commit]
 	gpgsign = true
 	verbose = true
 
 [core]
-	# hooksPath = /Users/skingston/global-git-hooks
+	hooksPath = /Users/skingston/global-git-hooks
 	pager = delta
 
 [interactive]
