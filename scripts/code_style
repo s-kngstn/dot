@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# This script checks for PHP/Laravel and Yarn project-specific files and runs
+# code styling and linting commands accordingly.
+#
+# Usage:
+# ./run_checks.sh
+# Ensure you have the necessary dependencies installed for your project type.
+
+# Check for Laravel/PHP project
+if [ -f artisan ] || [ -f composer.json ]; then
+  echo "Laravel/PHP project detected."
+
+  if [ -f vendor/bin/phpcs ]; then
+    echo "Running PHP CodeSniffer..."
+    vendor/bin/phpcs
+  else
+    echo "PHP CodeSniffer not found."
+  fi
+
+  if [ -f vendor/bin/phpcbf ]; then
+    echo "Fixing PHP CodeSniffer fixable errors..."
+    vendor/bin/phpcbf
+  else
+    echo "PHP CodeBeautifier not found."
+  fi
+else
+  echo "No Laravel/PHP project detected."
+fi
+
+# Check for Yarn project
+if [ -f yarn.lock ]; then
+  echo "Yarn project detected."
+
+  echo "Checking styles with Prettier..."
+  yarn style:check
+
+  echo "Fixing styles with Prettier..."
+  yarn style:fix
+
+  echo "Checking for lint issues..."
+  yarn lint:check
+
+  echo "Fixing fixable lint issues..."
+  yarn lint:fix
+else
+  echo "No Yarn project detected."
+fi
+
