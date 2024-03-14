@@ -35,6 +35,8 @@ alias q='clear'
 alias art='php artisan'
 alias dcup='docker-compose up -d'
 alias dcdown='docker-compose down'
+alias clean='~/dot/scripts/code_style'
+
 
 # Functions
 # Create a PR from master to production and assign a reviewer
