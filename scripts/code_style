@@ -3,9 +3,11 @@
 # This script checks for PHP/Laravel and Yarn project-specific files and runs
 # code styling and linting commands accordingly.
 #
+# Change permissions to make the script executable:
+# chmod +x code_style
 # Usage:
-# ./run_checks.sh
-# Ensure you have the necessary dependencies installed for your project type.
+# ./code_style
+# Add the script to your PATH to run it from anywhere in your system.
 
 # Check for Laravel/PHP project
 if [ -f artisan ] || [ -f composer.json ]; then
@@ -31,12 +33,6 @@ fi
 # Check for Yarn project
 if [ -f yarn.lock ]; then
   echo "Yarn project detected."
-
-  echo "Checking styles with Prettier..."
-  yarn style:check
-
-  echo "Fixing styles with Prettier..."
-  yarn style:fix
 
   echo "Checking for lint issues..."
   yarn lint:check
