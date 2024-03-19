@@ -96,11 +96,18 @@ return {
             return utils.root_has_file({ '.eslintrc.js', '.eslintrc.json' })
           end,
         }),
-        null_ls.builtins.formatting.pint.with({
-          condition = function(utils)
-            return utils.root_has_file({ 'vendor/bin/pint' })
-          end,
-        }),
+        -- Not currently using Pint for PHP
+        -- null_ls.builtins.formatting.pint.with({
+        --   condition = function(utils)
+        --     return utils.root_has_file({ 'vendor/bin/pint' })
+        --   end,
+        -- }),
+        -- Null-ls does not support PHP-CS-Fixer and null-ls is now deprecated
+        -- null_ls.builtins.formatting.phpcs.with({
+        --   condition = function(utils)
+        --     return utils.root_has_file({ 'phpcs.xml', '.phpcs.xml' })
+        --   end,
+        -- }),
         null_ls.builtins.formatting.prettier.with({
           condition = function(utils)
             return utils.root_has_file({ '.prettierrc', '.prettierrc.json', '.prettierrc.yml', '.prettierrc.js', 'prettier.config.js' })
