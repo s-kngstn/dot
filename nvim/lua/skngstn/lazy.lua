@@ -11,4 +11,17 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("skngstn.plugins")
+require("lazy").setup({
+  {import = "skngstn.plugins"},
+}, {
+  checker = {
+    enabled = true,
+    notify = false,
+  },
+  change_detection = {
+    notify = false,
+  },
+  install = {
+    colorscheme = { "tokyonight" },
+  },
+})
