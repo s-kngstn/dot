@@ -1,2 +1,3 @@
-require("skngstn")
+require("skngstn.core")
+require("skngstn.lazy")
 
