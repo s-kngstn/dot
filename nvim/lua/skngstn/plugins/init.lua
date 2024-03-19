@@ -4,5 +4,6 @@ return {
         "tpope/vim-commentary",
         "tpope/vim-sleuth",
         "tpope/vim-surround",
+        "fatih/vim-go",
 }
 
