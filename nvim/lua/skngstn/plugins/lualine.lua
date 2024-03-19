@@ -3,7 +3,18 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
         local lualine = require("lualine")
-
+        local function diff_source()
+        -- Get gitsigns status if it is enabled
+        -- In response to this issue: https://github.com/nvim-lualine/lualine.nvim/issues/699
+        local gitsigns = vim.b.gitsigns_status_dict
+          if gitsigns then
+            return {
+              added = gitsigns.added,
+              modified = gitsigns.changed,
+              removed = gitsigns.removed
+            }
+          end
+        end
         lualine.setup({
           options = {
             icons_enabled = true,
@@ -25,7 +36,7 @@ return {
           },
           sections = {
             lualine_a = {'mode'},
-            lualine_b = {'branch', 'diff', 'diagnostics'},
+            lualine_b = {'branch', {'diff', source = diff_source}, 'diagnostics'},
             lualine_c = {'filename'},
             lualine_x = {'encoding', 'fileformat', 'filetype'},
             lualine_y = {'progress'},
