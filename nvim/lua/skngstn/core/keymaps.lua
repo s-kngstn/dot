@@ -1,5 +1,8 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex) -- return to file tree
+-- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex) -- return to file tree netrw
+vim.keymap.set("n", "<leader>pv", function()
+  vim.cmd("Oil")
+end, {desc = "Open parent directory"}) -- return to file tree
 
 -- split window vertically
 vim.keymap.set("n", "<C-s>", "<C-w>v")
