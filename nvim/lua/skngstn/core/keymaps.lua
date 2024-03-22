@@ -48,3 +48,6 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 
 -- toggle relative line numbers
 vim.keymap.set("n", "<leader>r", ":set norelativenumber!<CR>")
+
+-- Disable annoying command line thing.
+vim.keymap.set('n', 'q:', ':q<CR>')
