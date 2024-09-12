@@ -51,7 +51,7 @@ return {
     })
 
     -- Vue, JavaScript, TypeScript
-    require('lspconfig').tsserver.setup({
+    require('lspconfig').ts_ls.setup({
       on_attach = function(client, bufnr)
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
