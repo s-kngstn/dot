@@ -16,6 +16,7 @@ This repository includes:
 - macOS operating system
 - Command Line Tools for Xcode: `xcode-select --install`
 - [Homebrew](https://brew.sh/) (The scripts will install Homebrew if it's not already installed.)
+- Neovim 0.10 or later: `brew install neovim`
 
 ### Installation
 
