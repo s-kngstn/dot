@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Detect the default branch
+if git show-ref --verify --quiet refs/remotes/origin/main; then
+    BASE_BRANCH="origin/main"
+elif git show-ref --verify --quiet refs/remotes/origin/master; then
+    BASE_BRANCH="origin/master"
+else
+    echo "Error: Could not find origin/main or origin/master"
+    exit 1
+fi
+
+# Get changed PHP files
+FILES=$(git diff --name-only --diff-filter=AM $BASE_BRANCH...HEAD | grep '\.php$' | xargs)
+
+if [ -z "$FILES" ]; then
+    echo "No PHP files changed from $BASE_BRANCH"
+    exit 0
+fi
+
+echo "Linting files changed from $BASE_BRANCH..."
+echo ""
+
+# Run rector then pint
+composer lint:rector -- $FILES
+composer lint:pint -- $FILES
+
+echo ""
+echo "Linting complete!"

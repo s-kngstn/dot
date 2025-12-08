@@ -4,7 +4,7 @@ return {
     config = function()
         local lualine = require("lualine")
         local function diff_source()
-        -- Get gitsigns status if it is enabled
+        -- Get gitsigns status if it is enable
         -- In response to this issue: https://github.com/nvim-lualine/lualine.nvim/issues/699
         local gitsigns = vim.b.gitsigns_status_dict
           if gitsigns then
