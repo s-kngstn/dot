@@ -94,11 +94,11 @@ return {
           end,
         }),
         -- Not currently using Pint for PHP
-        -- null_ls.builtins.formatting.pint.with({
-        --   condition = function(utils)
-        --     return utils.root_has_file({ 'vendor/bin/pint' })
-        --   end,
-        -- }),
+        null_ls.builtins.formatting.pint.with({
+          condition = function(utils)
+            return utils.root_has_file({ 'vendor/bin/pint' })
+          end,
+        }),
         -- Null-ls does not support PHP-CS-Fixer and null-ls is now deprecated
         -- null_ls.builtins.formatting.phpcs.with({
         --   condition = function(utils)
