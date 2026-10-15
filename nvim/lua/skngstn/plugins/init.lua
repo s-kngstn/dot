@@ -5,5 +5,6 @@ return {
         "tpope/vim-sleuth",
         "tpope/vim-surround",
         "fatih/vim-go",
+        "grafana/vim-alloy",
 }
 
