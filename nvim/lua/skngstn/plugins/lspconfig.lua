@@ -75,6 +75,15 @@ return {
       },
     })
 
+    -- Terraform (formats with `terraform fmt` on save)
+    require('lspconfig').terraformls.setup({ capabilities = capabilities })
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      pattern = { '*.tf', '*.tfvars' },
+      callback = function()
+        vim.lsp.buf.format({ timeout_ms = 5000 })
+      end,
+    })
+
     -- null-ls
     local null_ls = require('null-ls')
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
